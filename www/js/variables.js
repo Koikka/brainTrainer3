@@ -1,0 +1,1 @@
+var curr_nfc = "";

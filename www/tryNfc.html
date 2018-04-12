@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>mobiletuts phonegap</title>
+  <script src="cordova.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/SQLitePlugin.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/phonegap-nfc.js"></script> 
+  <script type="text/javascript" src="js/vclick.js"></script>
+  <script>
+  
+  var Id = null;
+  var Name = null;
+  var Score = null;
+  
+     function onLoad(){
+          document.addEventListener("deviceready", onDeviceReady, true);
+	   }
+	 
+     function onDeviceReady(){
+     
+     	  // Kokeillaan, ett‰ ohjelma toimii.
+     	  //
+        //navigator.notification.alert("PhoneGap is working!!");
+        var db = window.sqlitePlugin.openDatabase("PlayersDb", "1.0", "GamePlayers", -1);
+  		  db.transaction(createTable, errorCB, successCB);
+  		  db.transaction(addPlayerRecord,errorCB);
+  		  Score = 23;
+  		  db.transaction(addScoreRecord, errorCB);
+  		  Score = 15;
+  		  db.transaction(addScoreRecord, errorCB);
+  		  Score = 45;
+  		  db.transaction(addScoreRecord, errorCB);
+  		  //db.transaction(queryDB,errorCB);
+         
+          // T‰ss‰ lis‰t‰‰n NFC kuuntelija.
+          //
+          nfc.addTagDiscoveredListener(
+          	function(nfcEvent) {
+          	Id = nfcEvent.tag['id']; // T‰ll‰ saadaa tagin id pihalle.
+          		//document.getElementById("TAGID").innerHTML =JSON.stringify(nfcEvent.tag) + 'T‰ss‰ id: ' + Id;
+          		db.transaction(queryPlayersDB,errorCB);
+          		db.transaction(queryScoresDB,errorCB);
+          	}, 
+          	function() {
+          		//console.log("Success.");
+          	}, 
+          	function() {
+          		//console.log("Fail.");
+              alert("Some problems with NFC. Please restart the device.")
+          	}
+          );        
+     }
+     
+     function createTable(tx) {
+     	tx.executeSql('DROP TABLE IF EXISTS Players'); // <---Tuhoaa taulun. Kommentoi pois kun haluat pit‰‰ tallennetut arvot taulussa.
+     	tx.executeSql('DROP TABLE IF EXISTS Scores'); // <--- Kommentoi pois kun haluat pit‰‰ tallennetut arvot taulussa.
+     	tx.executeSql('CREATE TABLE IF NOT EXISTS Players (id INTEGER PRIMARY KEY AUTOINCREMENT, TagId TEXT NOT NULL, Name TEXT NOT NULL)');
+     	tx.executeSql('CREATE TABLE IF NOT EXISTS Scores (id INTEGER PRIMARY KEY AUTOINCREMENT, Date DATETIME DEFAULT CURRENT_TIMESTAMP, TagId TEXT NOT NULL, Score INTEGER NOT NULL)');
+     }
+     
+     function addPlayerRecord(tx){
+     	Name = 'Tommi Lehtinen';
+     	Id = '04afc81af32180';
+     	tx.executeSql('INSERT INTO Players(TagId,Name) VALUES ("'+Id+'", "'+Name+'")');
+     }
+     
+     function addScoreRecord(tx){
+     	Id = '04afc81af32180';
+     	tx.executeSql('INSERT INTO Scores(TagId, Score) VALUES ("'+Id+'", "'+Score+'")');
+     }
+     
+     function queryPlayersDB(tx){
+     	tx.executeSql('SELECT * FROM Players WHERE TagId="'+Id +'"',[],querySuccessPlayers,errorCB);
+     }
+     
+     function queryScoresDB(tx){
+     	tx.executeSql('SELECT * FROM Scores WHERE TagId="'+Id +'"',[],querySuccessScores,errorCB);
+     }
+     
+     function errorCB(err){
+     	alert("Error processing SQL: "+err.code); 	
+     }
+     
+     function successCB() {
+     	alert("success!");    
+     }
+     
+     function querySuccessPlayers(tx,result){
+     	var row = result.rows.item(0);
+     	alert("TagId: " +row['TagId'] +
+     			" Name: " +row['Name']);
+     }
+     
+     function querySuccessScores(tx,result){
+     	//var row = result.rows.item(0);
+     	//alert("Date: " +row['Date'] +
+     	//		" TagId: " +row['TagId'] +
+     	//		" Score: " +row['Score']);
+		var pisteet = "";
+     	var rowslen = result.rows.length;
+     	for (var i = 0; i < rowslen;i++)
+     	{
+     		var row = result.rows.item(i);
+     		pisteet = pisteet + " Score: " + row['Score'];
+     	}
+     	alert(pisteet);
+     }
+     
+     // alert if there is an error
+     //
+     function onError(){
+         alert("Error");
+     }
+     
+     
+  </script>
+  </head>
+  <body onload="onLoad();">
+       <h1>Welcome to PhoneGap</h1>
+       <hr>
+
+  </body>
+</html>

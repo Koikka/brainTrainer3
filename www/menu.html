@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>Pelikehitys - demo</title>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="js/vclick.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<style type="text/css">
+		html {
+		    -webkit-user-select: none;
+		}
+		body {
+			background-image: url('img/ricepaper.png');
+			font-family: arial;
+			overflow: hidden;
+			touch-action: none;
+		}
+		
+		/*#columns {
+			-moz-column-count:2;
+			-webkit-column-count:2;
+			column-width: auto;
+			column-count:2;
+		}*/
+		#menu_title {
+			w/idth: 100%;
+			font-family: arial;
+			font-size: 24px;
+			padding: 10px;
+			color: white;
+			background-color: black;
+			text-align: center;
+		}
+		#menuhtml_buttons {
+			display: none;
+		}
+		table th {background-color:#eee; color:#666666; font-weight: bold; padding: 5px;}
+		
+		.one td {background-color: #BDBDBD;}
+		.two td {background-color: #FAFAFA;}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#menu_title').append("Welcome "+localStorage.getItem(0)+"!");
+			setTimeout(function(){$('#menuhtml_buttons').fadeIn(1000).css({'display': 'block'})},500);
+			$('#stopGame').bind('touchend', function(event){
+				
+				navigator.app.exitApp();
+			});
+			$('#CatVsMouse').bind('touchend', function(){
+				window.location.href = "CatVsMouse.html";
+			});
+			$('#drawing').bind('touchend', function(){
+				window.location.href = "drawing.html";
+			});
+			$('#index').bind('touchend', function(){
+				window.location.href = "index.html";
+			});
+		});
+		app.initialize();
+		window.addEventListener('load', function() {
+	        document.body.addEventListener('touchmove', function(e) {
+	            e.preventDefault();
+	        }, false);
+	        window.addEventListener("touchstart", function(e) {
+	        	e.preventDefault();
+	        }, false);
+	        window.addEventListener("touchmove", function(e) {
+	        	e.preventDefault();
+	        }, false);
+	    }, false);
+    	// screen.lockOrientation('landscape');
+		//alert(localStorage.getItem(1));
+	</script>
+</head>
+<body>
+	<div id="menu_title"></div>
+	<div id="menuhtml_buttons">
+		<button id="CatVsMouse">Cat vs Mouse</button>
+		<button id="drawing">Trail Making Test</button>
+		<button id="index">Read new NFC</button>
+		<button id="stopGame" style="color: black;">Exit from APP</button>
+	</div>
+</body>
+</html>

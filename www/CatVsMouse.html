@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/vclick.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<title>Pelikehitys - demo</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<style type="text/css">
+		html {
+		    -webkit-user-select: none;
+		}
+		body {
+			font-family: arial;
+			background-image: url('img/ricepaper.png');
+			overflow: hidden;
+			touch-action: none;
+		}
+		#scoreTable {
+			width: 200px;
+		}
+		/*#columns {
+			-moz-column-count:2;
+			-webkit-column-count:2;
+			column-width: auto;
+			column-count:2;
+		}*/
+
+		table th {background-color:#eee; color:#666666; font-weight: bold; padding: 5px;}
+
+		.one td {background-color: #BDBDBD;}
+		.two td {background-color: #FAFAFA;}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				<div id="game"></div>
+			</td>
+		</tr>
+	</table>
+	<div id="points" style="font-size: 40px; padding-left: 50px; color: green;"></div>
+	<!-- Kello -->
+	<div id="stopwatch" style="font-size: 40px; position: absolute; color: red;">00:00:00:00</div>
+	<div>
+		<button id="startButtonTime" onclick="startButtonPressed()" style="position: relative; top: -60px;">Start</button>
+		<!--<button id="stopButtonTime" onclick="stopButtonPressed()">Stop</button>
+		<button onclick="restartButtonPressed()">Restart</button>
+		<button onclick="startOrientation()">Want to play by tilting?</button>
+		<button onclick="startSocket()">Use socket?</button>
+
+		<div id="log"></div>-->
+	</div>
+	<div id="fps" style="position: absolute; top: 15px; left: 15px; width: 30px; height: 30px;"></div>
+	<button id="forceConfig" onclick="forceConfig()" style="position: absolute; bottom: 0; left: 0; width: 43px; display: none;">C</button>
+</body>
+	<!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>-->
+	<!--<script src="/socket.io/socket.io.js"></script>-->
+	<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+	<!-- <script type="text/javascript" src="./js/startGame.js"></script> -->
+	<script type="text/javascript" src="./js/game.js"></script>
+	<script type="text/javascript" src="./js/drawing.js"></script>
+	<script type="text/javascript" src="./js/drawingDelay.js"></script>
+	<script type="text/javascript" src="./js/levels.js"></script>
+	<!-- <script type="text/javascript" src="./js/orientation.js"></script> -->
+	<script type="text/javascript">
+	var enableNFC = false;
+      if (enableNFC) {
+      // document.addEventListener("resume", window.location.reload(), false);
+        nfc.addTagDiscoveredListener(
+              function(nfcEvent) {
+                var hex = nfc.bytesToHexString(nfcEvent.tag.id);
+                console.log(hex);
+                if (localStorage.getItem(hex) == null) {
+                  var person = prompt("Please enter your name", "");
+                  if (person != null) {
+                      localStorage.setItem(hex, person);
+                  }
+                }
+                sessionStorage.setItem("uname", localStorage.getItem(hex));
+                localStorage.setItem("uname", sessionStorage.getItem("uname"));
+                $('#menu_title').empty();
+                $('#menu_title').append("Welcome To Play BrainTrainer - <span class='blink'>"+sessionStorage.getItem("uname")+"</span>");
+                alert("User has changed to "+sessionStorage.getItem("uname")+"!");
+              }, 
+              function() {
+                //console.log("Success.");
+              }, 
+              function() {
+                //console.log("Fail.");
+                alert("Some problems with NFC. Please restart the device.")
+              }
+            );
+          // nfc.addTagDiscoveredListener(function (nfcEvent) {
+          //     console.log("discovered");
+          //     console.log(JSON.stringify(nfcEvent));
+          // }, function () {
+          //     console.log("Discovering NFC Messages.");
+          // },
+          // function (error) {
+          //     console.log("Failed to discover NDEF.");
+          // });
+      }
+      window.addEventListener('load', function() {
+	        document.body.addEventListener('touchmove', function(e) {
+	            e.preventDefault();
+	        }, false);
+	        window.addEventListener("touchstart", function(e) {
+	        	e.preventDefault();
+	        }, false);
+	        window.addEventListener("touchmove", function(e) {
+	        	e.preventDefault();
+	        }, false);
+	    }, false);
+		// screen.lockOrientation('landscape');
+	</script>
+	<!--<script type="text/javascript" src="./js/score.js"></script>-->
+	<!--<script type="text/javascript" src="./js/socket.js"></script>-->
+	<!--<script type="text/javascript" src="./js/orientation.js"></script>
+	<script type="text/javascript" src="./js/drawing.js"></script>
+	<script type="text/javascript" src="./js/drawingDelay.js"></script>-->
+</html>

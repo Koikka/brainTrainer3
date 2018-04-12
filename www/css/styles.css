@@ -1,0 +1,183 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500);
+.bubble {
+	background-color: #A9BCF5;
+	display: table;
+	box-shadow: 0px 0px 1px 8px #2E2EFE inset;
+}
+.bubbleNum {
+	display: table-cell; 
+	vertical-align: middle; 
+	text-align: center;
+	font-family: 'Roboto', Arial;
+	font-weight: 500;
+	font-size: 40px;
+	font-weight: bold;
+}
+#container .selected {
+	background-color: #F5D0A9 !important;
+	box-shadow: 0px 0px 1px 8px #FF8000 inset !important;
+	opacity: 0.4;
+}
+#logContainer {
+	display: table;
+	position: absolute; 
+	top:0px; 
+	left:10px; 
+	width: 200px; 
+	height: 50px;
+	background-color: #F6D8CE;
+	border-radius: 15px;
+}
+#log {
+	display: table-cell; 
+	vertical-align: middle;
+	font-family: Arial;
+	font-size: 20px;
+	font-weight: bold;
+	color: green;
+	padding: 10px;
+}
+#startScreenContainer {
+	display: table;
+	width: 300px;
+	height: 300px;
+	margin: 10px auto;
+	b/order: solid #F3E2A9 5px;
+	b/ackground-color: #F5ECCE;
+	b/ox-shadow: 10px 10px 10px #888888;
+	font-family: 'Yanone Kaffeesatz', Arial;
+	font-size: 20px;
+}
+#startScreen {
+	display: table-cell; 
+	vertical-align: middle;
+	text-align: center;
+}
+#errors {
+	float: right;
+	color: red;
+}
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+button {
+	position: relative;
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    background-color: rgba(219,87,5,1);
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 700;
+    font-size: 3em;
+    display: block;
+    padding: 4px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    -moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+    margin: 20px auto;
+	width: 460px;
+	text-align: center;
+	
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+button:active {
+    -webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    -moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
+    position: relative;
+    top: 6px;
+}
+.menu_text {
+	position: relative;
+	top: -7px;
+}
+div.styled { 
+    overflow:hidden; /* this hides the select's drop button */
+    padding:0; 
+    margin:0; 
+    margin: auto;
+    background: white url('../img/formelements-select.png') no-repeat bottom right; 
+    /* this is the new drop button, in image form */
+    width:12em; border-radius:2px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2); 
+    border: solid 1px #ccc; 
+}
+div.styled select { 
+    width:115%; /* this percentage effectively extends the drop down button out of view */ 
+    background-color:transparent; /* this hides the select's background making any styling visible from the div */
+    background-image:none; 
+    -webkit-appearance: none; /* this is required for Webkit browsers */
+    border:none; 
+    box-shadow:none; 
+    padding: 10px 0px; /* padding should be added to the select, not the div */
+}
+#radioButtons {
+	text-align: left;
+	width: 305px;
+	margin: auto;
+}
+#pervResult {
+	margin: 80px 0 0 30px;
+	width: 330px;
+	background-color: #eee;
+	border: 1px dashed #999;
+	padding-left: 5px;
+}
+#pervResult div {
+	line-height: 40px;
+
+}
+#pervResultCatMouse {
+	width: 330px;
+	background-color: #eee;
+	border: 1px dashed #999;
+	padding-left: 5px;
+	margin: auto;
+}
+#pervResultCatMouse div {
+	text-align: left;
+	line-height: 40px;
+
+}
+#trialEnd {
+	font-family: 'Yanone Kaffeesatz';
+	font-size: 20px;
+	text-align: center;
+}
+#textareaTrial {
+	display: inline-block;
+	width: 300px;
+	height: 170px;
+	margin-right: 20px;
+	margin-top: 70px;
+	position: relative;
+	left: 40px;
+}
+#resultTrial {
+	display: inline-block;
+	margin-left: 20px;
+}
+.showmidscore {
+	color: red;
+}
+#cofigdialog {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: whitesmoke;
+	text-align: center;
+	z-index: 1000;
+}
+#cofigdialog button {
+	width: 50%;
+}
