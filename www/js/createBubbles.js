@@ -49,6 +49,7 @@ function createBubbles() {
 	//console.log(determinePosition);
 	$('#container').append("<div id='logContainer'><div id='log'></div></div>");
 	timer();
+	game_is_running = true;
 	numberOfRounds = 0;
 }
 // Get bubble positions

@@ -70,7 +70,7 @@ function bindEvent(element) {
 			localStorage.setItem(localStorage.getItem("uname"), data);
 			console.log(jsondata);
 			if (savedrawingdata) {
-				var server_to_use = "http://koikka.work/china/china.php";
+				var server_to_use = "http://koikka.work/portugal/portugal.php";
 				$.ajax({
 					method: "POST",
 					url: server_to_use,

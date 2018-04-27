@@ -376,7 +376,7 @@ function saveScore() {
 		// }
 		var score = $('#points').text();
 		//console.log(localStorage.getItem(1) + ', ' + score);
-		var server_to_use = "http://koikka.work/china/china.php";
+		var server_to_use = "http://koikka.work/portugal/portugal.php";
 		// var jsondata = {'key' : 'setScoreCatMouse', 'Id' : localStorage.getItem(1), 'score' : score, 'gameEnded' : gameEnded, 'notes' : notes};
 		var user_id = "";
 		for(var i=0, len=localStorage.length; i<len; i++) {
